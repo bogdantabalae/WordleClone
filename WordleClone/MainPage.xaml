@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WordleClone.MainPage">
+
+    <StackLayout Padding="20">
+        <Label Text="Enter your guess:" FontSize="Large" HorizontalOptions="Center"/>
+
+        <Grid RowSpacing="10" ColumnSpacing="10" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Entry x:Name="Letter1" MaxLength="1" Keyboard="Text" />
+            <Entry x:Name="Letter2" MaxLength="1" Keyboard="Text" Grid.Column="1" />
+            <Entry x:Name="Letter3" MaxLength="1" Keyboard="Text" Grid.Column="2" />
+            <Entry x:Name="Letter4" MaxLength="1" Keyboard="Text" Grid.Column="3" />
+            <Entry x:Name="Letter5" MaxLength="1" Keyboard="Text" Grid.Column="4" />
+        </Grid>
+
+        <Button Text="Submit" Clicked="OnSubmitGuess" />
+    </StackLayout>
+
+</ContentPage>
