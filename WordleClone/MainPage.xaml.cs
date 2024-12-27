@@ -48,7 +48,7 @@ namespace WordleClone
 
             if (File.Exists(localFilePath))
             {
-                using (var client  = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     var wordsData = await client.GetStringAsync(fileUrl);
                     await File.WriteAllTextAsync(localFilePath, wordsData);
@@ -79,7 +79,7 @@ namespace WordleClone
             attempts++;
 
             // Processing the guess
-            
+
             var feedback = GetFeedback(guess, correctWord);
 
             // Displaying feedback
@@ -94,6 +94,26 @@ namespace WordleClone
                 await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Okay");
             }
         }
-    }
 
+        // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
+        private void OnLetterTextChanged(object sender, EventArgs e)
+        {
+            // Declaring the variables
+            var currentEntry = sender as Entry;
+
+            // Checking to see if a single character is entered (The character length matches to 1)
+            if(currentEntry.Text.Length == 1)
+            {
+                // Moving focus to the next box
+                if(currentEntry == Letter1)
+                    Letter2.Focus();
+                else if (currentEntry == Letter2)
+                    Letter3.Focus();
+                else if (currentEntry == Letter3)
+                    Letter4.Focus();
+                else if (currentEntry == Letter4)
+                    Letter5.Focus();
+            }
+        }
+    }
 }

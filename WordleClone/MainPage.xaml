@@ -17,12 +17,13 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
+            
+            <!-- Adding a TextChanged event for automatically shifting focus from one dialog box to the other -->
             <Entry x:Name="Letter1" MaxLength="1" Keyboard="Text" />
-            <Entry x:Name="Letter2" MaxLength="1" Keyboard="Text" Grid.Column="1" />
-            <Entry x:Name="Letter3" MaxLength="1" Keyboard="Text" Grid.Column="2" />
-            <Entry x:Name="Letter4" MaxLength="1" Keyboard="Text" Grid.Column="3" />
-            <Entry x:Name="Letter5" MaxLength="1" Keyboard="Text" Grid.Column="4" />
+            <Entry x:Name="Letter2" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter3" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter4" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter5" MaxLength="1" Keyboard="Text" Grid.Column="4" TextChanged="OnLetterTextChanged" />
         </Grid>
 
         <Button Text="Submit" Clicked="OnSubmitGuess" />
