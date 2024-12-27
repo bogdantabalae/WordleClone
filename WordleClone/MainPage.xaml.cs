@@ -87,11 +87,11 @@ namespace WordleClone
 
             if (guess == correctWord)
             {
-                await DisplayAlert("You Win!", $"You guessed the word in {attempts} attempts.", "Okay");
+                await DisplayAlert("You Win!", $"You guessed the word in {attempts} attempts.", "Value");
             }
             else if (attempts >= maxAttempts)
             {
-                await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Okay");
+                await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Testing");
             }
         }
     }
