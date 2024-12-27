@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.IO;
 using Microsoft.Maui.Storage;
+using System.ComponentModel;
 
 namespace WordleClone
 {
@@ -96,13 +97,30 @@ namespace WordleClone
         }
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
+        // Editing this method to shift focus when backspace is pressed or a letter is typed
         private void OnLetterTextChanged(object sender, EventArgs e)
         {
             // Declaring the variables
             var currentEntry = sender as Entry;
 
+            if (currentEntry != null)
+            {
+                // Checking to see if the user typed a character
+                if (currentEntry.Text.Length == 1)
+                {
+                    // Adding functionality to automatically shift focus to the next box
+                    ShiftFocusForward(currentEntry);
+                }
+
+                // Checking to see if the user pressed backspace to automatically shift focus to the previous box
+                else if (currentEntry.Text.Length == 0)
+                {
+                    ShiftFocusBackward(currentEntry);
+                }
+            }
+
             // Checking to see if a single character is entered (The character length matches to 1)
-            if(currentEntry.Text.Length == 1)
+            /*if(currentEntry.Text.Length == 1)
             {
                 // Moving focus to the next box
                 if(currentEntry == Letter1)
@@ -113,7 +131,33 @@ namespace WordleClone
                     Letter4.Focus();
                 else if (currentEntry == Letter4)
                     Letter5.Focus();
-            }
+            }*/
+        }
+
+        // Creating the move focus forward method
+        private void ShiftFocusForward(Entry currentEntry)
+        {
+            if (currentEntry == Letter1)
+                Letter2.Focus();
+            else if (currentEntry == Letter2)
+                Letter3.Focus();
+            else if (currentEntry == Letter3)
+                Letter4.Focus();
+            else if (currentEntry == Letter4)
+                Letter5.Focus();
+        }
+
+        // Creating the move focus backward method
+        private void ShiftFocusBackward(Entry currentEntry)
+        {
+            if (currentEntry == Letter5)
+                Letter4.Focus();
+            else if (currentEntry == Letter4)
+                Letter3.Focus();
+            else if (currentEntry == Letter3)
+                Letter2.Focus();
+            else if(currentEntry == Letter2)
+                Letter1.Focus();
         }
     }
 }
