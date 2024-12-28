@@ -68,7 +68,7 @@ namespace WordleClone
         // Creating a method for the submit guess button
         private async void OnSubmitGuess(object sender, EventArgs e)
         {
-            string guess = Letter1.Text + Letter2.Text + Letter3.Text + Letter4.Text + Letter5.Text;
+            string guess = Letter1Row1.Text + Letter2Row1.Text + Letter3Row1.Text + Letter4Row1.Text + Letter5Row1.Text;
 
             // Adding validation to the guess
             if (guess.Length != 5 || !guess.All(char.IsLetter))
@@ -137,27 +137,27 @@ namespace WordleClone
         // Creating the move focus forward method
         private void ShiftFocusForward(Entry currentEntry)
         {
-            if (currentEntry == Letter1)
-                Letter2.Focus();
-            else if (currentEntry == Letter2)
-                Letter3.Focus();
-            else if (currentEntry == Letter3)
-                Letter4.Focus();
-            else if (currentEntry == Letter4)
-                Letter5.Focus();
+            if (currentEntry == Letter1Row1)
+                Letter2Row1.Focus();
+            else if (currentEntry == Letter2Row1)
+                Letter3Row1.Focus();
+            else if (currentEntry == Letter3Row1)
+                Letter4Row1.Focus();
+            else if (currentEntry == Letter4Row1)
+                Letter5Row1.Focus();
         }
 
         // Creating the move focus backward method
         private void ShiftFocusBackward(Entry currentEntry)
         {
-            if (currentEntry == Letter5)
-                Letter4.Focus();
-            else if (currentEntry == Letter4)
-                Letter3.Focus();
-            else if (currentEntry == Letter3)
-                Letter2.Focus();
-            else if(currentEntry == Letter2)
-                Letter1.Focus();
+            if (currentEntry == Letter5Row1)
+                Letter4Row1.Focus();
+            else if (currentEntry == Letter4Row1)
+                Letter3Row1.Focus();
+            else if (currentEntry == Letter3Row1)
+                Letter2Row1.Focus();
+            else if(currentEntry == Letter2Row1)
+                Letter1Row1.Focus();
         }
     }
 }

@@ -6,8 +6,13 @@
     <StackLayout Padding="20">
         <Label Text="Enter your guess:" FontSize="Large" HorizontalOptions="Center"/>
 
-        <Grid RowSpacing="10" ColumnSpacing="10" HorizontalOptions="Center">
+        <Grid RowSpacing="10" ColumnSpacing="5" HorizontalOptions="Center">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -48,18 +53,18 @@
             <Entry x:Name="Letter5Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" Grid.Column="4" TextChanged="OnLetterTextChanged" />
             
             <!-- Creating the fifth row -->
-            <Entry x:Name="Letter1Row5" MaxLength="1" Keyboard="Text" Grid.Row="1" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter1Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter3Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter4Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter5Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="4" TextChanged="OnLetterTextChanged" />
             
             <!-- Creating the sixth row -->
-            <Entry x:Name="Letter1Row6" MaxLength="1" Keyboard="Text" Grid.Row="1" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter2Row6" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="1" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter3Row6" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="2" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter4Row6" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="3" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter5Row6" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="4" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter1Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter2Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" Grid.Column="1" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter3Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" Grid.Column="2" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter4Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" Grid.Column="3" TextChanged="OnLetterTextChanged" />
+            <Entry x:Name="Letter5Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" Grid.Column="4" TextChanged="OnLetterTextChanged" />
         </Grid>
 
         <Button Text="Submit" Clicked="OnSubmitGuess" />
