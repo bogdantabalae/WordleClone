@@ -24,21 +24,34 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0">
-                <!-- Adding a TextChanged event for automatically shifting focus from one dialog box to the other -->
-                <!-- Creating the first row -->
-                <!-- Added custom font to match the original Wordle font and made sure that the boxes are static and do not change based on the size of the font -->
+            <!-- Adding a TextChanged event for automatically shifting focus from one dialog box to the other -->
+            <!-- Creating the first row -->
+            <!-- Added custom font to match the original Wordle font and made sure that the boxes are static and do not change based on the size of the font -->
+            <!-- Wrapped all entries in frames in order to add the grey border that exists in the original Wordle game -->
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="0">
                 <Entry x:Name="Letter1Row1" MaxLength="1" Keyboard="Text" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
-                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
             </Frame>
-            <Entry x:Name="Letter2Row1" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
-                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
-            <Entry x:Name="Letter3Row1" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
-                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
-            <Entry x:Name="Letter4Row1" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
-                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
-            <Entry x:Name="Letter5Row1" MaxLength="1" Keyboard="Text" Grid.Column="4" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
-                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+            
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="1">
+                <Entry x:Name="Letter2Row1" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50"  TextColor="White" />
+            </Frame>
+            
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="2">
+                <Entry x:Name="Letter3Row1" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
+            </Frame>
+            
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="3">
+                <Entry x:Name="Letter4Row1" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
+            </Frame>
+
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="4">
+                <Entry x:Name="Letter5Row1" MaxLength="1" Keyboard="Text" Grid.Column="4" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
+            </Frame>
 
 
             <!-- Creating the second row -->
