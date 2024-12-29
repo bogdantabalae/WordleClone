@@ -2,6 +2,9 @@
 using System.IO;
 using Microsoft.Maui.Storage;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+
 
 namespace WordleClone
 {
@@ -86,6 +89,7 @@ namespace WordleClone
         }
 
         // Creating a method for the submit guess button
+        // Now I will adjust the OnSubmitGuess method to call the GetLetterColour method in order to apply each color to the letter input box
         private async void OnSubmitGuess(object sender, EventArgs e)
         {
 
@@ -111,7 +115,10 @@ namespace WordleClone
             var feedback = GetFeedback(guess, correctWord);
 
             // Displaying feedback
-            Console.WriteLine(string.Join(", ", feedback));
+            Debug.WriteLine(string.Join(", ", feedback));
+
+            // Displaying the letter colour based on the feedback from the game logic
+            GetLetterColour(feedback);
 
             if (guess == correctWord)
             {
@@ -185,6 +192,33 @@ namespace WordleClone
                 Letter2Row1.Focus();
             else if(currentEntry == Letter2Row1)
                 Letter1Row1.Focus();
+        }
+
+        // Creating a method to update the colour of each letter based on the feedback of the game logic
+        private void GetLetterColour(List<string> feedback)
+        {
+            SetLetterColour(Letter1Row1, feedback[0]);
+            SetLetterColour(Letter2Row1, feedback[1]);
+            SetLetterColour(Letter3Row1, feedback[2]);
+            SetLetterColour(Letter4Row1, feedback[3]);
+            SetLetterColour(Letter5Row1, feedback[4]);
+        }
+
+        // Creating a method that allows to set the colour of each letter based on the feedback of the game logic once it has been updated in the GetLetterColour method
+        private void SetLetterColour(Entry currentEntry, string colour)
+        {
+            if (colour == "Green")
+            {
+                currentEntry.BackgroundColor = Colors.DarkGreen;
+            }
+            else if (colour == "Yellow")
+            {
+                currentEntry.BackgroundColor = Colors.LightYellow;
+            }
+            else
+            {
+                currentEntry.BackgroundColor = Colors.Gray;
+            }
         }
     }
 }
