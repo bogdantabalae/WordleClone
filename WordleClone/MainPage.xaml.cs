@@ -213,7 +213,7 @@ namespace WordleClone
             }
             else if (colour == "Yellow")
             {
-                currentEntry.BackgroundColor = Colors.LightYellow;
+                currentEntry.BackgroundColor = Colors.Orange;
             }
             else
             {
