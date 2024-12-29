@@ -44,6 +44,9 @@ namespace WordleClone
         {
             List<string> feedback = new List<string>();
 
+            // Converting the guess to lowercase to allow for the game logic to take in uppercase letters in the input boxes
+            guess = guess.ToLower();
+
             for (int i = 0; i < 5; i++)
             {
                 if (guess[i] == correctWord[i])
@@ -105,6 +108,14 @@ namespace WordleClone
             if (guess.Length != 5 || !guess.All(char.IsLetter))
             {
                 await DisplayAlert("Invalid Input", "Please enter a valid 5-letter word.", "OK");
+                return;
+            }
+
+            // Adding validation to check if the word entered is in the word list and also allow for case insensitive entries such as "APPLE", "Apple" and "apple".
+            var words = File.ReadAllLines(Path.Combine(FileSystem.AppDataDirectory, "words.txt"));
+            if (!words.Contains(guess.ToLower()))
+            {
+                await DisplayAlert("Invalid Word", "Not in word list!" , "OK");
                 return;
             }
 

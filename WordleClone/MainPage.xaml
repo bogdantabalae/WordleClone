@@ -4,8 +4,8 @@
              x:Class="WordleClone.MainPage"
              BackgroundColor="#242424">
 
-    <StackLayout Padding="20">
-        <Label Text="Enter your guess:" FontSize="Large" HorizontalOptions="Center"/>
+    <StackLayout Padding="30">
+
 
         <Grid RowSpacing="10" ColumnSpacing="5" HorizontalOptions="Center">
             <Grid.RowDefinitions>
@@ -23,43 +23,52 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <!-- Adding a TextChanged event for automatically shifting focus from one dialog box to the other -->
-            <!-- Creating the first row -->
-            <Entry x:Name="Letter1Row1" MaxLength="1" Keyboard="Text" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter2Row1" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter3Row1" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter4Row1" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" />
-            <Entry x:Name="Letter5Row1" MaxLength="1" Keyboard="Text" Grid.Column="4" TextChanged="OnLetterTextChanged" />
-            
+
+            <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0">
+                <!-- Adding a TextChanged event for automatically shifting focus from one dialog box to the other -->
+                <!-- Creating the first row -->
+                <!-- Added custom font to match the original Wordle font and made sure that the boxes are static and do not change based on the size of the font -->
+                <Entry x:Name="Letter1Row1" MaxLength="1" Keyboard="Text" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+            </Frame>
+            <Entry x:Name="Letter2Row1" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+            <Entry x:Name="Letter3Row1" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+            <Entry x:Name="Letter4Row1" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+            <Entry x:Name="Letter5Row1" MaxLength="1" Keyboard="Text" Grid.Column="4" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
+                   HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" />
+
+
             <!-- Creating the second row -->
             <Entry x:Name="Letter1Row2" MaxLength="1" Keyboard="Text" Grid.Row="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row2" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter3Row2" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter4Row2" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter5Row2" MaxLength="1" Keyboard="Text" Grid.Row="1" Grid.Column="4" TextChanged="OnLetterTextChanged" />
-            
+
             <!-- Creating the third row -->
             <Entry x:Name="Letter1Row3" MaxLength="1" Keyboard="Text" Grid.Row="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row3" MaxLength="1" Keyboard="Text" Grid.Row="2" Grid.Column="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter3Row3" MaxLength="1" Keyboard="Text" Grid.Row="2" Grid.Column="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter4Row3" MaxLength="1" Keyboard="Text" Grid.Row="2" Grid.Column="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter5Row3" MaxLength="1" Keyboard="Text" Grid.Row="2" Grid.Column="4" TextChanged="OnLetterTextChanged" />
-            
+
             <!-- Creating the fourth row -->
             <Entry x:Name="Letter1Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" Grid.Column="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter3Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" Grid.Column="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter4Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" Grid.Column="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter5Row4" MaxLength="1" Keyboard="Text" Grid.Row="3" Grid.Column="4" TextChanged="OnLetterTextChanged" />
-            
+
             <!-- Creating the fifth row -->
             <Entry x:Name="Letter1Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="1" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter3Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="2" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter4Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="3" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter5Row5" MaxLength="1" Keyboard="Text" Grid.Row="4" Grid.Column="4" TextChanged="OnLetterTextChanged" />
-            
+
             <!-- Creating the sixth row -->
             <Entry x:Name="Letter1Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" TextChanged="OnLetterTextChanged" />
             <Entry x:Name="Letter2Row6" MaxLength="1" Keyboard="Text" Grid.Row="5" Grid.Column="1" TextChanged="OnLetterTextChanged" />
