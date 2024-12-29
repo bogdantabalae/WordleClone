@@ -15,6 +15,25 @@ namespace WordleClone
         public MainPage()
         {
             InitializeComponent();
+
+            // Calling the method to initialize the game asynchronously
+            InitializingGameAsync();
+        }
+
+        // Creating a constructor / task that downloads the words file if it does not exist
+
+        bool isGameInitialized = false;
+        private async Task InitializingGameAsync()
+        {
+            var localFilePath = Path.Combine(FileSystem.AppDataDirectory, "words.txt");
+
+            if (!File.Exists(localFilePath))
+            {
+                await DownloadAndSaveWordList();
+            }
+
+            correctWord = GetRandomWord();
+            isGameInitialized = true;
         }
 
         // Creating a function that gives feedback about the guess
@@ -47,13 +66,14 @@ namespace WordleClone
             string fileUrl = "https://raw.githubusercontent.com/DonH-ITS/jsonfiles/main/words.txt";
             string localFilePath = Path.Combine(FileSystem.AppDataDirectory, "words.txt");
 
-            if (File.Exists(localFilePath))
+            if (!Directory.Exists(FileSystem.AppDataDirectory))
             {
-                using (var client = new HttpClient())
-                {
-                    var wordsData = await client.GetStringAsync(fileUrl);
-                    await File.WriteAllTextAsync(localFilePath, wordsData);
-                }
+                Directory.CreateDirectory(FileSystem.AppDataDirectory);
+            }
+            using (var client = new HttpClient())
+            {
+                var wordsData = await client.GetStringAsync(fileUrl);
+                await File.WriteAllTextAsync(localFilePath, wordsData);
             }
         }
 
@@ -68,6 +88,13 @@ namespace WordleClone
         // Creating a method for the submit guess button
         private async void OnSubmitGuess(object sender, EventArgs e)
         {
+
+            // Adding an if statement to check if the game is properly initialized before playing
+            if (!isGameInitialized)
+            {
+                await DisplayAlert("Game is not ready yet!", "Please wait while the game is loading.","Okay");
+                return;
+            }
             string guess = Letter1Row1.Text + Letter2Row1.Text + Letter3Row1.Text + Letter4Row1.Text + Letter5Row1.Text;
 
             // Adding validation to the guess
