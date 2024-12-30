@@ -173,6 +173,9 @@ namespace WordleClone
 
             // Calling the method that disables the previous row after a valid guess
             DisabledPreviousRow(attempts - 2);
+
+            // Calling the method that allows for shifting focus to the first entry of the next row
+            ShiftFocusToNextRow(attempts);
         }
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
@@ -216,27 +219,44 @@ namespace WordleClone
         // Creating the move focus forward method
         private void ShiftFocusForward(Entry currentEntry)
         {
-            if (currentEntry == Letter1Row1)
-                Letter2Row1.Focus();
-            else if (currentEntry == Letter2Row1)
-                Letter3Row1.Focus();
-            else if (currentEntry == Letter3Row1)
-                Letter4Row1.Focus();
-            else if (currentEntry == Letter4Row1)
-                Letter5Row1.Focus();
+            // Finding the current active row
+            List<Entry> currentRow = allRows.FirstOrDefault(row => row.Contains(currentEntry));
+
+            if (currentRow != null)
+            {
+                int currentLocation = currentRow.IndexOf(currentEntry);
+                if (currentLocation < currentRow.Count - 1)
+                {
+                    currentRow[currentLocation + 1].Focus();
+                }
+            }
         }
 
         // Creating the move focus backward method
         private void ShiftFocusBackward(Entry currentEntry)
         {
-            if (currentEntry == Letter5Row1)
-                Letter4Row1.Focus();
-            else if (currentEntry == Letter4Row1)
-                Letter3Row1.Focus();
-            else if (currentEntry == Letter3Row1)
-                Letter2Row1.Focus();
-            else if (currentEntry == Letter2Row1)
-                Letter1Row1.Focus();
+            // Finding the current active row
+            List<Entry> currentRow = allRows.FirstOrDefault(row => row.Contains(currentEntry));
+
+            if (currentRow != null)
+            {
+                int currentLocation = currentRow.IndexOf(currentEntry);
+                if (currentLocation > 0)
+                {
+                    currentRow[currentLocation - 1].Focus();
+                }
+            }
+        }
+
+        // Creating a method that allows to shift focus to the next row
+        private void ShiftFocusToNextRow(int rowLocation)
+        {
+            if (rowLocation < allRows.Count)
+            {
+                List<Entry> nextRow = allRows[rowLocation];
+                var firstEntryInNextRow = nextRow.FirstOrDefault();
+                firstEntryInNextRow?.Focus();
+            }
         }
 
         // Creating a method to update the colour of each letter based on the feedback of the game logic
