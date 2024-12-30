@@ -156,8 +156,8 @@ namespace WordleClone
             // Displaying feedback
             Debug.WriteLine(string.Join(", ", feedback));
 
-            // Displaying the letter colour based on the feedback from the game logic
-            GetLetterColour(feedback);
+            // Displaying the letter colour based on the feedback from the game logic and the current row
+            GetLetterColour(feedback, attempts - 1);
 
             if (guess == correctWord)
             {
@@ -260,13 +260,16 @@ namespace WordleClone
         }
 
         // Creating a method to update the colour of each letter based on the feedback of the game logic
-        private void GetLetterColour(List<string> feedback)
+        private void GetLetterColour(List<string> feedback, int rowLocation)
         {
-            SetLetterColour(Letter1Row1, feedback[0]);
-            SetLetterColour(Letter2Row1, feedback[1]);
-            SetLetterColour(Letter3Row1, feedback[2]);
-            SetLetterColour(Letter4Row1, feedback[3]);
-            SetLetterColour(Letter5Row1, feedback[4]);
+            // Getting the current row based on the rowLocation
+            var currentRow = allRows[rowLocation];
+
+            // Creating a for loop in order to search through each entry in the row and apply the colour based on the feedback
+            for (int i = 0; i < currentRow.Count; i++)
+            {
+                SetLetterColour(currentRow[i], feedback[i]);
+            }
         }
 
         // Creating a method that allows to set the colour of each letter based on the feedback of the game logic once it has been updated in the GetLetterColour method
