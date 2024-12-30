@@ -32,17 +32,17 @@
                 <Entry x:Name="Letter1Row1" MaxLength="1" Keyboard="Text" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
                    HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
             </Frame>
-            
+
             <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="1">
                 <Entry x:Name="Letter2Row1" MaxLength="1" Keyboard="Text" Grid.Column="1" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
                    HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50"  TextColor="White" />
             </Frame>
-            
+
             <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="2">
                 <Entry x:Name="Letter3Row1" MaxLength="1" Keyboard="Text" Grid.Column="2" TextChanged="OnLetterTextChanged" TextTransform="Uppercase"
                    HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
             </Frame>
-            
+
             <Frame Padding="0" Margin="0" BorderColor="DimGray" BackgroundColor="#242424" CornerRadius="0" Grid.Row="0" Grid.Column="3">
                 <Entry x:Name="Letter4Row1" MaxLength="1" Keyboard="Text" Grid.Column="3" TextChanged="OnLetterTextChanged" TextTransform="Uppercase" 
                    HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold" WidthRequest="50" HeightRequest="50" TextColor="White" />
@@ -185,7 +185,14 @@ HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold"
             </Frame>
         </Grid>
 
-        <Button Margin="20"  Text="Submit" Clicked="OnSubmitGuess" />
+        <!-- Addig customization to the button to increase user experience -->
+        <Button x:Name="SubmitButton" Margin="20"  Text="GUESS" Clicked="OnSubmitGuess" BackgroundColor="#4caf50" TextColor="Black"
+                FontFamily="NeueHelveticaBold" FontSize="Large" CornerRadius="25" HorizontalOptions="Center" VerticalOptions="End" 
+                WidthRequest="150" HeightRequest="50">
+            <Button.Shadow>
+                <Shadow Brush="#388e3c" Offset="0,5" Radius="10" Opacity="0.6" />
+            </Button.Shadow>
+        </Button>
     </StackLayout>
 
 </ContentPage>

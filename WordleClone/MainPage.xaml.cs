@@ -96,6 +96,10 @@ namespace WordleClone
         private async void OnSubmitGuess(object sender, EventArgs e)
         {
 
+            // Adding animation to te button which will scale the button down slightly when pressed and back to normal
+            await SubmitButton.ScaleTo(0.9, 100);
+            await SubmitButton.ScaleTo(1.0, 100);
+
             // Adding an if statement to check if the game is properly initialized before playing
             if (!isGameInitialized)
             {
