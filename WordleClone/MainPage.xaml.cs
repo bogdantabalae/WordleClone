@@ -15,12 +15,27 @@ namespace WordleClone
         int attempts = 0;
         const int maxAttempts = 6;
         string correctWord;
+        private List<List<Entry>> allRows;
         public MainPage()
         {
             InitializeComponent();
 
             // Calling the method to initialize the game asynchronously
             InitializingGameAsync();
+
+            // Initializing all the rows starting from the second one in order to have them disabled on game startup
+            allRows = new List<List<Entry>>()
+            {
+                new List<Entry> { Letter1Row1, Letter2Row1, Letter3Row1, Letter4Row1, Letter5Row1 },
+                new List<Entry> { Letter1Row2, Letter2Row2, Letter3Row2, Letter4Row2, Letter5Row2 },
+                new List<Entry> { Letter1Row3, Letter2Row3, Letter3Row3, Letter4Row3, Letter5Row3 },
+                new List<Entry> { Letter1Row4, Letter2Row4, Letter3Row4, Letter4Row4, Letter5Row4 },
+                new List<Entry> { Letter1Row5, Letter2Row5, Letter3Row5, Letter4Row5, Letter5Row5 },
+                new List<Entry> { Letter1Row6, Letter2Row6, Letter3Row6, Letter4Row6, Letter5Row6 }
+            };
+
+            // Calling the method that disables all rows except the first one
+            DisableAllRowsExceptFirst();
         }
 
         // Creating a constructor / task that downloads the words file if it does not exist
@@ -103,7 +118,7 @@ namespace WordleClone
             // Adding an if statement to check if the game is properly initialized before playing
             if (!isGameInitialized)
             {
-                await DisplayAlert("Game is not ready yet!", "Please wait while the game is loading.","Okay");
+                await DisplayAlert("Game is not ready yet!", "Please wait while the game is loading.", "Okay");
                 return;
             }
             string guess = Letter1Row1.Text + Letter2Row1.Text + Letter3Row1.Text + Letter4Row1.Text + Letter5Row1.Text;
@@ -119,7 +134,7 @@ namespace WordleClone
             var words = File.ReadAllLines(Path.Combine(FileSystem.AppDataDirectory, "words.txt"));
             if (!words.Contains(guess.ToLower()))
             {
-                await DisplayAlert("Invalid Word", "Not in word list!" , "OK");
+                await DisplayAlert("Invalid Word", "Not in word list!", "OK");
                 return;
             }
 
@@ -143,6 +158,9 @@ namespace WordleClone
             {
                 await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Okay");
             }
+
+            // Calling the method that enables the next row after a valid guess
+            EnabledNextRow(attempts);
         }
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
@@ -205,7 +223,7 @@ namespace WordleClone
                 Letter3Row1.Focus();
             else if (currentEntry == Letter3Row1)
                 Letter2Row1.Focus();
-            else if(currentEntry == Letter2Row1)
+            else if (currentEntry == Letter2Row1)
                 Letter1Row1.Focus();
         }
 
@@ -233,6 +251,31 @@ namespace WordleClone
             else
             {
                 currentEntry.BackgroundColor = Colors.Gray;
+            }
+        }
+
+        // Creating a method to disable all rows except first one
+        private void DisableAllRowsExceptFirst()
+        {
+            // Checking through each row starting frome the second one
+            for (int i = 1; i < allRows.Count; i++)
+            {
+                foreach (var entry in allRows[i])
+                {
+                    entry.IsEnabled = false;
+                }
+            }
+        }
+
+        // Creating a method to enable the next row after the user inputs a valid guess
+        private void EnabledNextRow(int rowLocation)
+        {
+            if (rowLocation + 0 < allRows.Count)
+            {
+                foreach (var entry in allRows[rowLocation + 0])
+                {
+                    entry.IsEnabled = true;
+                }
             }
         }
     }
