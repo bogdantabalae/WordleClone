@@ -121,7 +121,16 @@ namespace WordleClone
                 await DisplayAlert("Game is not ready yet!", "Please wait while the game is loading.", "Okay");
                 return;
             }
-            string guess = Letter1Row1.Text + Letter2Row1.Text + Letter3Row1.Text + Letter4Row1.Text + Letter5Row1.Text;
+
+            // Gathering the current row guess based on the number of attempts
+            List<Entry> currentRow = allRows[attempts];
+            string guess = "";
+
+            // Creating a for loop which checks each entry input box in the current row
+            foreach (var entry in currentRow)
+            {
+                guess += entry.Text;
+            }
 
             // Adding validation to the guess
             if (guess.Length != 5 || !guess.All(char.IsLetter))
