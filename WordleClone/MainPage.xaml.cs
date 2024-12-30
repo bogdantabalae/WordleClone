@@ -161,6 +161,9 @@ namespace WordleClone
 
             // Calling the method that enables the next row after a valid guess
             EnabledNextRow(attempts);
+
+            // Calling the method that disables the previous row after a valid guess
+            DisabledPreviousRow(attempts - 2);
         }
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
@@ -275,6 +278,18 @@ namespace WordleClone
                 foreach (var entry in allRows[rowLocation + 0])
                 {
                     entry.IsEnabled = true;
+                }
+            }
+        }
+
+        // Creating a method to disable the previous row after the user inputs a valid guess
+        private void DisabledPreviousRow(int rowLocation)
+        {
+            if (rowLocation >= 0 && rowLocation < allRows.Count)
+            {
+                foreach (var entry in allRows[rowLocation])
+                {
+                    entry.IsEnabled = false;
                 }
             }
         }
