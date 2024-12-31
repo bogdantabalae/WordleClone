@@ -355,7 +355,7 @@ namespace WordleClone
         }
 
         // Creating a method to update the colour of each letter based on the feedback of the game logic
-        private void GetLetterColour(List<string> feedback, int rowLocation)
+        private async void GetLetterColour(List<string> feedback, int rowLocation)
         {
             // Getting the current row based on the rowLocation
             var currentRow = allRows[rowLocation];
@@ -364,6 +364,11 @@ namespace WordleClone
             for (int i = 0; i < currentRow.Count; i++)
             {
                 SetLetterColour(currentRow[i], feedback[i]);
+
+                // Adding animation to flip the entry boxes like in the orignial wordle
+                var currentEntry = currentRow[i];
+                await currentEntry.RotateXTo(180, 300, Easing.CubicInOut);
+                await currentEntry.RotateXTo(0, 300, Easing.CubicInOut);
             }
         }
 
