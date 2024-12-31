@@ -4,6 +4,7 @@ using Microsoft.Maui.Storage;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using Microsoft.Maui.ApplicationModel;
 
 
 namespace WordleClone
@@ -428,6 +429,17 @@ namespace WordleClone
                     entry.IsEnabled = false;
                 }
             }
+        }
+
+        // Creating a method that opens up a link to the official wordle rules when the how to button is clicked
+        private async void OnHowTo(object sender, EventArgs e)
+        {
+            string wordleRulesLink = "https://www.nytimes.com/2023/08/01/crosswords/how-to-talk-about-wordle.html";
+            await Launcher.OpenAsync(wordleRulesLink);
+
+            // Adding animation to te button which will scale the button down slightly when pressed and back to normal
+            await HowToButton.ScaleTo(0.9, 100);
+            await HowToButton.ScaleTo(1.0, 100);
         }
     }
 }
