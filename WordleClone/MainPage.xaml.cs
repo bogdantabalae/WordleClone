@@ -306,6 +306,12 @@ namespace WordleClone
                     // Adding animation to make the letters jump once a letter has been entered in the input box
                     await currentEntry.ScaleTo(1.1, 100, Easing.CubicInOut);
                     await currentEntry.ScaleTo(1.0, 100, Easing.CubicInOut);
+
+                    // Adding validation to make sure that only alphabetical letters are allwoed in the entry boxes
+                    if (!string.IsNullOrEmpty(currentEntry.Text) && !char.IsLetter(currentEntry.Text[0])) 
+                    {
+                        currentEntry.Text = string.Empty;
+                    }
                 }
 
                 // Checking to see if the user pressed backspace to automatically shift focus to the previous box
