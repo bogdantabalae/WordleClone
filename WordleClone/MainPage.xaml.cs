@@ -58,27 +58,56 @@ namespace WordleClone
         // Creating a function that gives feedback about the guess
         private List<string> GetFeedback(string guess, string correctWord)
         {
-            List<string> feedback = new List<string>();
+            // Initializing the feedback list
+            List<string> feedback = new List<string> { "", "", "", "", "" };
+
+            // Tracking used letters in the correct word 
+            bool[] correctWordUsed = new bool[5];
+
+            // Tracking the used letters in the guess
+            bool[] guessUsed = new bool[5];
 
             // Converting the guess to lowercase to allow for the game logic to take in uppercase letters in the input boxes
             guess = guess.ToLower();
 
+            // Marking the green letters aka the correct position and letter
             for (int i = 0; i < 5; i++)
             {
                 if (guess[i] == correctWord[i])
                 {
-                    feedback.Add("Green");
-                }
-                else if (correctWord.Contains(guess[i]))
-                {
-                    feedback.Add("Yellow");
-                }
-                else
-                {
-                    feedback.Add("Gray");
+                    feedback[i] = "Green";
+                    correctWordUsed[i] = true;
+                    guessUsed[i] = true;
                 }
             }
 
+            // Marking the yellow letter which is included in the word again but the position is incorrect
+            for (int i = 0; i < 5; i++)
+            {
+                if (feedback[i] == "")
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        // Checking if the letter exists in the correct word and if it hasn't been used already
+                        if (!correctWordUsed[j] && correctWord[j] == guess[i])
+                        {
+                            feedback[i] = "Yellow";
+                            correctWordUsed[j] = true;
+                            guessUsed[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Marking the rest of the incorrect letters as gray
+            for (int i = 0; i < 5; i++)
+            {
+                if (feedback[i] == "")
+                {
+                    feedback[i] = "Gray";
+                }
+            }
             return feedback;
         }
 
@@ -166,7 +195,7 @@ namespace WordleClone
             GetLetterColour(feedback, attempts - 1);
 
             // Checking for a win
-            if (guess == correctWord)
+            if (guess.ToLower() == correctWord)
             {
                 gameOver = true;
                 await DisplayAlert("You Win!", $"You guessed the word in {attempts} attempts.", "Okay");
@@ -191,6 +220,9 @@ namespace WordleClone
 
             // Calling the method that allows for shifting focus to the first entry of the next row
             ShiftFocusToNextRow(attempts);
+
+            // Adding a debugging line to be able to verify the guess and the correct word 
+            Debug.WriteLine($"Guess: {guess}, Correct Word: {correctWord}");
         }
 
         // Creating a helper method that handles the tasks at the end of the game
@@ -215,6 +247,9 @@ namespace WordleClone
         // Creating an event handler method for the restart button
         private async void OnRestartGame(object sender, EventArgs e)
         {
+            // Resetting the game state
+            gameOver = false;
+
             // Adding button press animation to the restart button
             await RestartButton.ScaleTo(0.9, 100);
             await RestartButton.ScaleTo(1.0, 100);
@@ -274,20 +309,6 @@ namespace WordleClone
                     ShiftFocusBackward(currentEntry);
                 }
             }
-
-            // Checking to see if a single character is entered (The character length matches to 1)
-            /*if(currentEntry.Text.Length == 1)
-            {
-                // Moving focus to the next box
-                if(currentEntry == Letter1)
-                    Letter2.Focus();
-                else if (currentEntry == Letter2)
-                    Letter3.Focus();
-                else if (currentEntry == Letter3)
-                    Letter4.Focus();
-                else if (currentEntry == Letter4)
-                    Letter5.Focus();
-            }*/
         }
 
         // Creating the move focus forward method
