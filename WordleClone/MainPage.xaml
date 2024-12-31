@@ -6,13 +6,7 @@
 
     <StackLayout Padding="30">
 
-        <Button x:Name="HowToButton" Margin="20"  Text="HOW TO" Clicked="OnHowTo" BackgroundColor="Gray" TextColor="Black"
-        FontFamily="NeueHelveticaBold" FontSize="Large" CornerRadius="25" HorizontalOptions="End" VerticalOptions="Start" 
-        WidthRequest="155" HeightRequest="50">
-            <Button.Shadow>
-                <Shadow Brush="DimGray" Offset="0,5" Radius="10" Opacity="0.6" />
-            </Button.Shadow>
-        </Button>
+        
 
         <!-- Adding a label at the top of the grid that says the games title name -->
         <Label Text="WORDLE" FontSize="Large" FontFamily="NeueHelveticaBold" HorizontalOptions="Center" VerticalOptions="Start" TextColor="LightGray" FontAttributes="Bold" Margin="0,0,0,20"/>
@@ -210,6 +204,14 @@ HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold"
                 WidthRequest="150" HeightRequest="50" IsVisible="False">
             <Button.Shadow>
                 <Shadow Brush="DarkOrange" Offset="0,5" Radius="10" Opacity="0.6" />
+            </Button.Shadow>
+        </Button>
+
+        <Button x:Name="HowToButton" Margin="20"  Text="HOW TO" Clicked="OnHowTo" BackgroundColor="Gray" TextColor="Black"
+                FontFamily="NeueHelveticaBold" FontSize="Large" CornerRadius="25" HorizontalOptions="Center" VerticalOptions="End" 
+                WidthRequest="155" HeightRequest="50">
+            <Button.Shadow>
+                <Shadow Brush="DimGray" Offset="0,5" Radius="10" Opacity="0.6" />
             </Button.Shadow>
         </Button>
     </StackLayout>
