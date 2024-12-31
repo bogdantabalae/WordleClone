@@ -289,7 +289,7 @@ namespace WordleClone
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
         // Editing this method to shift focus when backspace is pressed or a letter is typed
-        private void OnLetterTextChanged(object sender, EventArgs e)
+        private async void OnLetterTextChanged(object sender, EventArgs e)
         {
             // Declaring the variables
             var currentEntry = sender as Entry;
@@ -301,6 +301,10 @@ namespace WordleClone
                 {
                     // Adding functionality to automatically shift focus to the next box
                     ShiftFocusForward(currentEntry);
+
+                    // Adding animation to make the letters jump once a letter has been entered in the input box
+                    await currentEntry.ScaleTo(1.1, 100, Easing.CubicInOut);
+                    await currentEntry.ScaleTo(1.0, 100, Easing.CubicInOut);
                 }
 
                 // Checking to see if the user pressed backspace to automatically shift focus to the previous box
