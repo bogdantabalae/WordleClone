@@ -16,6 +16,7 @@ namespace WordleClone
         const int maxAttempts = 6;
         string correctWord;
         private List<List<Entry>> allRows;
+        bool gameOver = false;
         public MainPage()
         {
             InitializeComponent();
@@ -110,6 +111,11 @@ namespace WordleClone
         // Now I will adjust the OnSubmitGuess method to call the GetLetterColour method in order to apply each color to the letter input box
         private async void OnSubmitGuess(object sender, EventArgs e)
         {
+            // Adding an if statement to verify if the game is already over it will not allow the user to submit another guess
+            if (gameOver)
+            {
+                return;
+            }
 
             // Adding animation to te button which will scale the button down slightly when pressed and back to normal
             await SubmitButton.ScaleTo(0.9, 100);
@@ -159,23 +165,22 @@ namespace WordleClone
             // Displaying the letter colour based on the feedback from the game logic and the current row
             GetLetterColour(feedback, attempts - 1);
 
+            // Checking for a win
             if (guess == correctWord)
             {
+                gameOver = true;
                 await DisplayAlert("You Win!", $"You guessed the word in {attempts} attempts.", "Okay");
 
-                // Adding animation to the retry button
-                RestartButton.Opacity = 0;
-                RestartButton.IsVisible = true;
-                await RestartButton.FadeTo(1, 500);
+                EndGame();
+                return;
             }
             else if (attempts >= maxAttempts)
             {
+                gameOver = true;
                 await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Okay");
 
-                // Adding animation to the button
-                RestartButton.Opacity = 0;
-                RestartButton.IsVisible = true;
-                await RestartButton.FadeTo(1, 500);
+                EndGame();
+                return;
             }
 
             // Calling the method that enables the next row after a valid guess
@@ -188,14 +193,40 @@ namespace WordleClone
             ShiftFocusToNextRow(attempts);
         }
 
+        // Creating a helper method that handles the tasks at the end of the game
+        private async void EndGame()
+        {
+            // Disabling the submit button along all the entry rows
+            SubmitButton.IsEnabled = false;
+            foreach (var row in allRows)
+            {
+                foreach (var entry in row)
+                {
+                    entry.IsEnabled = false;
+                }
+            }
+
+            // Showing the restart button including the animation
+            RestartButton.Opacity = 0;
+            RestartButton.IsVisible = true;
+            await RestartButton.FadeTo(1, 500);
+        }
+
         // Creating an event handler method for the restart button
         private async void OnRestartGame(object sender, EventArgs e)
         {
+            // Adding button press animation to the restart button
+            await RestartButton.ScaleTo(0.9, 100);
+            await RestartButton.ScaleTo(1.0, 100);
+
             // Retry attempts
             attempts = 0;
 
             // Hiding the retry button
             RestartButton.IsVisible = false;
+
+            // Enabling the submit button again 
+            SubmitButton.IsEnabled = true;
 
             // For loop to clear all entries and reset their colours
             foreach (var row in allRows)
