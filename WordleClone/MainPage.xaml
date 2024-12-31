@@ -193,6 +193,15 @@ HorizontalTextAlignment="Center" FontSize="Large" FontFamily="NeueHelveticaBold"
                 <Shadow Brush="#388e3c" Offset="0,5" Radius="10" Opacity="0.6" />
             </Button.Shadow>
         </Button>
+        
+        <!-- Adding a button to be able to restart the game and replay only when the six guesses have been completed -->
+        <Button x:Name="RestartButton" Text="RETRY" Clicked="OnRestartGame" BackgroundColor="Orange" TextColor="Black"
+                FontFamily="NeueHelveticaBold" FontSize="Large" CornerRadius="25" HorizontalOptions="Center" VerticalOptions="End" 
+                WidthRequest="150" HeightRequest="50" IsVisible="False">
+            <Button.Shadow>
+                <Shadow Brush="DarkOrange" Offset="0,5" Radius="10" Opacity="0.6" />
+            </Button.Shadow>
+        </Button>
     </StackLayout>
 
 </ContentPage>

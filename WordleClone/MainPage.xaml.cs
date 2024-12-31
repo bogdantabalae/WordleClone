@@ -162,10 +162,20 @@ namespace WordleClone
             if (guess == correctWord)
             {
                 await DisplayAlert("You Win!", $"You guessed the word in {attempts} attempts.", "Okay");
+
+                // Adding animation to the retry button
+                RestartButton.Opacity = 0;
+                RestartButton.IsVisible = true;
+                await RestartButton.FadeTo(1, 500);
             }
             else if (attempts >= maxAttempts)
             {
                 await DisplayAlert("Game Over", $"The correct word was: {correctWord}", "Okay");
+
+                // Adding animation to the button
+                RestartButton.Opacity = 0;
+                RestartButton.IsVisible = true;
+                await RestartButton.FadeTo(1, 500);
             }
 
             // Calling the method that enables the next row after a valid guess
@@ -176,6 +186,39 @@ namespace WordleClone
 
             // Calling the method that allows for shifting focus to the first entry of the next row
             ShiftFocusToNextRow(attempts);
+        }
+
+        // Creating an event handler method for the restart button
+        private async void OnRestartGame(object sender, EventArgs e)
+        {
+            // Retry attempts
+            attempts = 0;
+
+            // Hiding the retry button
+            RestartButton.IsVisible = false;
+
+            // For loop to clear all entries and reset their colours
+            foreach (var row in allRows)
+            {
+                foreach (var entry in row)
+                {
+                    entry.Text = string.Empty;
+                    entry.BackgroundColor = Colors.Transparent;
+                    entry.IsEnabled = false;
+                }
+            }
+
+            // Loop to enable the first row so that the game logic restarts again
+            foreach (var entry in allRows[0])
+            {
+                entry.IsEnabled = true;
+            }
+
+            // Gathering a new word from the list
+            correctWord = GetRandomWord();
+
+            // Alert to let the player know the game has restarted
+            await DisplayAlert("New Game!", "Welcome to Wordle. Good Luck!", "Okay");
         }
 
         // Creating a method to implement the logic for the OnLetterTextChanged event which allows for shifting focus automatically
